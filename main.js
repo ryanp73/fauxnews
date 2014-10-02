@@ -11,6 +11,28 @@ var lastUpdate = moment();
 var app = express();
 var trueHeadlines = {};
 var fakeHeadlines = {};
+var correct = localStorage.correct;
+var total = localStorage.total;
+
+// Function to update scoreboard
+
+function scoreboard(isCorrect) {
+
+    if(typeOf(correct) = null || 'undefined') {
+        localStorage.setItem('correct', 0);
+    }
+    
+    if(typeOf(total) = null || 'undefined') {
+        localStorage.setItem('total', 0);
+    }
+
+    if(isCorrect) {
+        correct = correct++;
+        total = total++;
+    } else {
+        total = total++;
+    }
+}
 
 app.engine('jade', require('jade').__express);
 app.set('view engine', 'jade');
@@ -34,7 +56,9 @@ app.get('/', function(req, res) {
         uuid:          headline.uuid,
         updateTimeAgo: lastUpdate.fromNow(),
         isPerm:        false,
-        isReal:        real
+        isReal:        real,
+        correct:       correct,
+        total:         total  
     });
 });
 

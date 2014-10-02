@@ -7,6 +7,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/assets/css/bootstrap.min.css")
     link(rel="stylesheet", href="/assets/css/app.css")
+    link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Press+Start 2P:400")
     script(type="text/javascript", src="/assets/js/jquery-2.1.1.min.js")
     script(type="text/javascript", src="/assets/js/bootstrap.js")
     script.
@@ -15,9 +16,11 @@ html(lang="en")
         var isReal = #{isReal};
         if (selected == isReal) {
           $('#answerModalBody').html('<h2 style="margin-top: 0;">Nice!</h2>');
+          scoreboard(true);
         }
         else {
           $('#answerModalBody').html('<h2 style="margin-top: 0;">Sorry!</h2>');
+          scoreboard(false);
         }
         $('#answerModalBody').append("The headline was " + (isReal ? "real" : "fake") + ".");
         $('#answerModal').modal('toggle');
@@ -56,6 +59,8 @@ html(lang="en")
       a.btn.btn-xs.btn-default(href="http://github.com/tma02")
         span.glyphicon.glyphicon-heart
         =" tma02"
+      .scoreboard
+        #{correct} out of #{total}
   script.
     $('#t').click(function() {
       checkHeadline(true);
